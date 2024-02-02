@@ -12,9 +12,13 @@ public class GameManager : MonoBehaviour
     const int NEXT_FIELD_Y_LENGTH = 10;
 
     private int _score = default;
-    private int _nscore = default;
+    private int _deletedline = default;
+    //スコアテキスト
     [SerializeField]
     private Text _scoreText;
+    private const int SINGLE_LINE_SCORE = 400;
+    private const int DOUBLE_LINE_SCORE = 800;
+    private const int QUADRUPLE_LINE_SCORE = 1600;
     //メインのゲームフィールド
     [SerializeField]
     private GameObject _field;
@@ -283,20 +287,27 @@ public class GameManager : MonoBehaviour
             }
             //行が消えた
             deleted = true;
-            //int intTest = Convert.ToInt32(deleted);
-            //print(intTest);
-            if (deleted == true) {
-               _nscore++;
+
+            if (deleted) {
+                _deletedline++;
             }
-            if (_nscore == 1) {
-                _score =+ 400;
+            //1行消えたら400取得
+            if (_deletedline == 1)
+            {
+                //2行消えたら800取得
+                _score += SINGLE_LINE_SCORE;
+            } else if (_deletedline == 2)
+            {
+                //4行消えたらスコア1600取得
+                _score += DOUBLE_LINE_SCORE;
+            } else if (_deletedline == 4) 
+            {
+                _score += QUADRUPLE_LINE_SCORE;
             }
-            if (_nscore == 2) {
-                _score = +800;
-            }
-            if (_nscore == 4) {
-                _score = +1600;
-            }
+            print(_deletedline);
+            //削除したライン数を削除
+            _deletedline = 0;
+
             //フィールドの下から上に行をチェック
             for (int downY = y; downY >= 0; downY--)
             {

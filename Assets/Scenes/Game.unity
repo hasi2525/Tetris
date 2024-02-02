@@ -321,7 +321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game over\n\n\u3000Retry? \u3000\n\nPress spackey"
+  m_Text: "Game over\n\n\u3000Retry? \u3000\n\nPress spacekey"
 --- !u!222 &302527378
 CanvasRenderer:
   m_ObjectHideFlags: 0
